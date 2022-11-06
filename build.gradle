@@ -38,6 +38,7 @@ dependencies {
             "io.appium:java-client:$appiumVersion",
             "org.slf4j:slf4j-simple:$slf4jVersion",
             "org.aeonbits.owner:owner:$ownerVersion",
+            "commons-io:commons-io:2.4",
             "org.junit.jupiter:junit-jupiter:$junitVersion"
     )
 }

@@ -16,6 +16,11 @@ public class AndroidSearchTests extends TestBase {
 
     @Test
     void searchTest() {
+        step("Skip onboarding", () -> {
+            $(AppiumBy.id("org.wikipedia.alpha:id/fragment_onboarding_skip_button"))
+                    .click();
+        });
+
         step("Type search", () -> {
             $(AppiumBy.accessibilityId("Search Wikipedia")).click();
             $(AppiumBy.id("org.wikipedia.alpha:id/search_src_text"))
@@ -29,16 +34,18 @@ public class AndroidSearchTests extends TestBase {
     @Test
     @DisplayName("Search and open article test")
     void searchAndOpenArticleTest() {
-
-        step("Type search", () -> {
-            $(AppiumBy.id("org.wikipedia.alpha:id/search_container")).click();
-            $(AppiumBy.id("org.wikipedia.alpha:id/search_src_text")).sendKeys("Java");
+        step("Skip onboarding", () -> {
+            $(AppiumBy.id("org.wikipedia.alpha:id/fragment_onboarding_skip_button"))
+                    .click();
         });
+        $(AppiumBy.accessibilityId("Search Wikipedia")).click();
+        $(AppiumBy.id("org.wikipedia.alpha:id/search_src_text"))
+                .sendKeys("V for vendetta");
         step("Verify content found", () -> {
             $$(AppiumBy.id("org.wikipedia.alpha:id/search_results_list")).shouldHave(
                     CollectionCondition.sizeGreaterThan(0));
         });
-        step("Open article about Java ", () -> {
+        step("Open an article ", () -> {
             $(AppiumBy.id("org.wikipedia.alpha:id/page_list_item_title")).click();
         });
     }
